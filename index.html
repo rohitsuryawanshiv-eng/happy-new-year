@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy New Year 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #ffb6d5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.35);
+      padding: 40px 60px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: #ff4f9a;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 32px;
+      color: #d63384;
+      margin: 10px 0;
+    }
+
+    p {
+      font-size: 20px;
+      color: #8b2c5c;
+    }
+
+    .name {
+      margin-top: 20px;
+      font-size: 26px;
+      color: #ff2f92;
+      font-weight: bold;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff5fa2;
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff5fa2;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <div class="heart" style="left:10%; animation-duration:7s;"></div>
+  <div class="heart" style="left:25%; animation-duration:9s;"></div>
+  <div class="heart" style="left:40%; animation-duration:6s;"></div>
+  <div class="heart" style="left:55%; animation-duration:10s;"></div>
+  <div class="heart" style="left:70%; animation-duration:8s;"></div>
+  <div class="heart" style="left:85%; animation-duration:7.5s;"></div>
+
+  <!-- Main Card -->
+  <div class="card">
+    <h1>🎉 Happy New Year 2026 🎉</h1>
+    <h2>💖 With Love & Smiles 💖</h2>
+    <p>May this New Year bring you joy, happiness,<br>
+       success, and lots of love 💕</p>
+    <div class="name">✨ From SHREYA (Butke) ✨</div>
+  </div>
+
+</body>
+</html>
