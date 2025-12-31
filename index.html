@@ -59,6 +59,7 @@
       text-align: center;
       color: var(--accent);
       position: relative;
+      z-index: 11;
     }
 
     .intro-message {
@@ -94,6 +95,7 @@
       height: 100%;
       pointer-events: none;
       overflow: hidden;
+      z-index: 10;
     }
 
     .emoji {
@@ -108,6 +110,53 @@
     .emoji:nth-child(3) { left: 50%; animation-delay: 2s; }
     .emoji:nth-child(4) { left: 70%; animation-delay: 3s; }
     .emoji:nth-child(5) { left: 90%; animation-delay: 4s; }
+
+    /* Intro hearts */
+    .intro-hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9;
+    }
+
+    .intro-heart {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: var(--heart);
+      transform: rotate(45deg);
+      opacity: 0.8;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+      animation: floatHeart 8s linear infinite;
+    }
+
+    .intro-heart::before,
+    .intro-heart::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: var(--heart);
+      border-radius: 50%;
+    }
+
+    .intro-heart::before { top: -12px; left: 0; }
+    .intro-heart::after { left: -12px; top: 0; }
+
+    .intro-heart:nth-child(1) { left: 5%; animation-delay: -1s; }
+    .intro-heart:nth-child(2) { left: 15%; animation-delay: -2s; }
+    .intro-heart:nth-child(3) { left: 25%; animation-delay: -3s; }
+    .intro-heart:nth-child(4) { left: 35%; animation-delay: -4s; }
+    .intro-heart:nth-child(5) { left: 45%; animation-delay: -5s; }
+    .intro-heart:nth-child(6) { left: 55%; animation-delay: -6s; }
+    .intro-heart:nth-child(7) { left: 65%; animation-delay: -7s; }
+    .intro-heart:nth-child(8) { left: 75%; animation-delay: -8s; }
+    .intro-heart:nth-child(9) { left: 85%; animation-delay: -9s; }
+    .intro-heart:nth-child(10) { left: 95%; animation-delay: -10s; }
 
     /* Card */
     .card{
@@ -228,6 +277,12 @@
       100% { transform: translateY(-10vh) rotate(360deg); }
     }
 
+    @keyframes floatHeart {
+      0% { transform: translateY(110vh) rotate(45deg) scale(1); opacity: 0.8; }
+      60% { opacity: 0.9; }
+      100% { transform: translateY(-10vh) rotate(45deg) scale(0.9); opacity: 0.5; }
+    }
+
     @keyframes typeWriter {
       from { width: 0; }
       to { width: 100%; }
@@ -280,7 +335,7 @@
 
     /* Respect user's reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
-      .heart { animation: none; opacity:0.7; transform: translateY(0) rotate(45deg); }
+      .heart, .intro-heart { animation: none; opacity: 0.7; transform: translateY(0) rotate(45deg); }
       .intro-message, .enter-btn, .emoji { animation: none; opacity: 1; }
       h1, h2, p, .name, .moments, .best-moments, .next-btn { animation: none; opacity: 1; }
     }
@@ -294,6 +349,18 @@
 <body>
   <!-- Intro screen -->
   <div class="intro" id="intro">
+    <div class="intro-hearts">
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+      <div class="intro-heart"></div>
+    </div>
     <div class="floating-emojis">
       <div class="emoji">💖</div>
       <div class="emoji">✨</div>
