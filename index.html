@@ -1,112 +1,151 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Happy New Year 💖</title>
+  <meta name="description" content="A cheerful Happy New Year card with floating hearts." />
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ffd6e8, #ffb6d5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
+    :root{
+      --bg1: #ffd6e8;
+      --bg2: #ffb6d5;
+      --card-bg: rgba(255,255,255,0.35);
+      --accent: #ff4f9a;
+      --accent-2: #d63384;
+      --text: #8b2c5c;
+      --heart: #ff5fa2;
+      --shadow: rgba(255,105,180,0.4);
+      --card-radius: 24px;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.35);
-      padding: 40px 60px;
-      border-radius: 25px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
-      z-index: 2;
+    /* Reset & layout */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      overflow:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    h1 {
-      font-size: 48px;
-      color: #ff4f9a;
-      margin-bottom: 10px;
+    /* Card */
+    .card{
+      background:var(--card-bg);
+      padding:32px 48px;
+      border-radius:var(--card-radius);
+      text-align:center;
+      box-shadow:0 10px 30px var(--shadow);
+      z-index:2;
+      backdrop-filter: blur(6px);
+      max-width:720px;
+      width:calc(100% - 48px);
     }
 
-    h2 {
-      font-size: 32px;
-      color: #d63384;
-      margin: 10px 0;
+    h1{
+      font-size: clamp(28px, 4vw, 48px);
+      color:var(--accent);
+      margin:0 0 8px;
+      line-height:1.05;
     }
 
-    p {
-      font-size: 20px;
-      color: #8b2c5c;
+    h2{
+      font-size: clamp(20px, 3vw, 32px);
+      color:var(--accent-2);
+      margin:8px 0;
+      font-weight:600;
     }
 
-    .name {
-      margin-top: 20px;
-      font-size: 26px;
-      color: #ff2f92;
-      font-weight: bold;
+    p{
+      color:var(--text);
+      font-size:clamp(14px,2vw,20px);
+      margin:8px 0 0;
     }
 
-    /* Floating hearts */
+    .name{
+      margin-top:18px;
+      font-size:clamp(18px,2.2vw,26px);
+      color:#ff2f92;
+      font-weight:700;
+    }
+
+    /* Floating hearts container (decorative) */
+    .hearts {
+      position:fixed;
+      inset:0;
+      pointer-events:none; /* purely decorative */
+      z-index:1;
+      overflow:hidden;
+    }
+
     .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ff5fa2;
+      position:absolute;
+      width:22px;
+      height:22px;
+      background:var(--heart);
       transform: rotate(45deg);
-      animation: float 8s linear infinite;
-      opacity: 0.7;
+      opacity:0.8;
+      filter:drop-shadow(0 6px 12px rgba(0,0,0,0.06));
+      will-change: transform, opacity;
+      --duration: 8s;
+      animation: float var(--duration) linear infinite;
     }
-
     .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ff5fa2;
-      border-radius: 50%;
+    .heart::after{
+      content:"";
+      position:absolute;
+      width:22px;
+      height:22px;
+      background:var(--heart);
+      border-radius:50%;
     }
+    .heart::before{ top:-11px; left:0; }
+    .heart::after{ left:-11px; top:0; }
 
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: -10px;
-      top: 0;
-    }
+    /* Different sizes / speeds */
+    .heart.small{ width:14px; height:14px; }
+    .heart.small::before,.heart.small::after{ width:14px; height:14px; top:-7px; left:0; left:-7px; }
+    .heart.large{ width:30px; height:30px; }
+    .heart.large::before,.heart.large::after{ width:30px; height:30px; top:-15px; left:0; left:-15px; }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) rotate(45deg);
-      }
-      100% {
-        transform: translateY(-10vh) rotate(45deg);
-      }
+      0% { transform: translateY(110vh) rotate(45deg) scale(1); opacity:0.85; }
+      60% { opacity:0.95; }
+      100% { transform: translateY(-10vh) rotate(45deg) scale(.9); opacity:0.6; }
+    }
+
+    /* Respect user's reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .heart { animation: none; opacity:0.7; transform: translateY(0) rotate(45deg); }
+    }
+
+    /* Responsive padding on small screens */
+    @media (max-width:420px){
+      .card{ padding:20px; border-radius:16px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Floating Hearts -->
-  <div class="heart" style="left:10%; animation-duration:7s;"></div>
-  <div class="heart" style="left:25%; animation-duration:9s;"></div>
-  <div class="heart" style="left:40%; animation-duration:6s;"></div>
-  <div class="heart" style="left:55%; animation-duration:10s;"></div>
-  <div class="heart" style="left:70%; animation-duration:8s;"></div>
-  <div class="heart" style="left:85%; animation-duration:7.5s;"></div>
-
-  <!-- Main Card -->
-  <div class="card">
-    <h1>🎉 Happy New Year 2026 🎉</h1>
-    <h2>💖 With Love & Smiles 💖</h2>
-    <p>May this New Year bring you joy, happiness,<br>
-       success, and lots of love 💕</p>
-    <div class="name">✨ From SHREYA (Butke) ✨</div>
+  <!-- Decorative hearts: aria-hidden because they are purely visual -->
+  <div class="hearts" aria-hidden="true">
+    <div class="heart small" style="left:8%; --duration:7s; animation-delay: -1s;"></div>
+    <div class="heart" style="left:22%; --duration:9s; animation-delay: -3s;"></div>
+    <div class="heart large" style="left:40%; --duration:6.5s; animation-delay: -2s;"></div>
+    <div class="heart" style="left:56%; --duration:10s; animation-delay: -5s;"></div>
+    <div class="heart small" style="left:70%; --duration:8.2s; animation-delay: -4s;"></div>
+    <div class="heart" style="left:86%; --duration:7.6s; animation-delay: -6s;"></div>
   </div>
 
+  <main class="card" role="main" aria-labelledby="title">
+    <h1 id="title">🎉 Happy New Year 2026 🎉</h1>
+    <h2>💖 With Love & Smiles 💖</h2>
+    <p>May this New Year bring you joy, happiness,<br>success, and lots of love 💕</p>
+    <div class="name">✨ From SHREYA (Butke) ✨</div>
+  </main>
 </body>
 </html>
