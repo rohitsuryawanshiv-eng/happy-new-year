@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Happy New Year 💖</title>
-  <meta name="description" content="A cheerful Happy New Year card with floating hearts." />
+  <meta name="description" content="A cheerful Happy New Year card with floating hearts and animated text." />
   <style>
     :root{
       --bg1: #ffd6e8;
@@ -52,6 +52,7 @@
       color:var(--accent);
       margin:0 0 8px;
       line-height:1.05;
+      animation: fadeInUp 1.5s ease-out;
     }
 
     h2{
@@ -59,12 +60,14 @@
       color:var(--accent-2);
       margin:8px 0;
       font-weight:600;
+      animation: fadeInUp 1.5s ease-out 0.5s both;
     }
 
     p{
       color:var(--text);
       font-size:clamp(14px,2vw,20px);
       margin:8px 0 0;
+      animation: fadeInUp 1.5s ease-out 1s both;
     }
 
     .name{
@@ -72,6 +75,29 @@
       font-size:clamp(18px,2.2vw,26px);
       color:#ff2f92;
       font-weight:700;
+      animation: fadeInUp 1.5s ease-out 1.5s both;
+    }
+
+    .moments {
+      margin-top: 20px;
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--text);
+      line-height: 1.6;
+      animation: typeWriter 3s steps(40, end) 2s both;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid var(--accent);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes typeWriter {
+      from { width: 0; }
+      to { width: 100%; }
     }
 
     /* Floating hearts container (decorative) */
@@ -122,6 +148,7 @@
     /* Respect user's reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       .heart { animation: none; opacity:0.7; transform: translateY(0) rotate(45deg); }
+      h1, h2, p, .name, .moments { animation: none; opacity: 1; }
     }
 
     /* Responsive padding on small screens */
@@ -145,6 +172,7 @@
     <h1 id="title">🎉 Happy New Year 2026 🎉</h1>
     <h2>💖 With Love & Smiles 💖</h2>
     <p>May this New Year bring you joy, happiness,<br>success, and lots of love 💕</p>
+    <div class="moments">Cherished moments of 2025 with you: Our laughter-filled adventures, cozy movie nights, surprise celebrations, and the countless ways you brightened my days. Here's to even more magic in 2026! ✨</div>
     <div class="name">✨ From SHREYA (Butke) ✨</div>
   </main>
 </body>
