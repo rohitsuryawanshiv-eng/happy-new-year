@@ -398,7 +398,7 @@ The user has pasted a large block of CSS and HTML, which seems to be a modified 
       <div class="star">⭐</div>
     </div>
     <div class="intro-content">
-      <div class="intro-message">✨🌸hey, Shreya here something for you, my cute princess (Butke)👑💖, are you excited?🌸✨ </div>
+      <div class="intro-message">✨🌸hey, my cute princess (Butke)👑💖, are you excited?🌸✨ </div>
       <button class="enter-btn" onclick="enterPage()">Click Here</button>
     </div>
   </div>
