@@ -86,6 +86,20 @@
       transform: scale(1.05);
     }
 
+    /* Background SHREYA animation */
+    .background-shreya {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(5rem, 20vw, 15rem);
+      color: rgba(255, 79, 154, 0.1);
+      font-weight: 900;
+      z-index: 8;
+      animation: fadeInShreya 3s ease-out;
+      pointer-events: none;
+    }
+
     /* Floating stars on intro */
     .floating-stars {
       position: absolute;
@@ -272,6 +286,11 @@
       60% { transform: translateY(-5px); }
     }
 
+    @keyframes fadeInShreya {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
     @keyframes floatStar {
       0% { transform: translateY(100vh) rotate(0deg); }
       100% { transform: translateY(-10vh) rotate(360deg); }
@@ -336,7 +355,7 @@
     /* Respect user's reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       .heart, .intro-heart { animation: none; opacity: 0.7; transform: translateY(0) rotate(45deg); }
-      .intro-message, .enter-btn, .star { animation: none; opacity: 1; }
+      .intro-message, .enter-btn, .star, .background-shreya { animation: none; opacity: 1; }
       h1, h2, p, .name, .moments, .best-moments, .next-btn { animation: none; opacity: 1; }
     }
 
@@ -349,6 +368,7 @@
 <body>
   <!-- Intro screen -->
   <div class="intro" id="intro">
+    <div class="background-shreya">SHREYA</div>
     <div class="intro-hearts">
       <div class="intro-heart"></div>
       <div class="intro-heart"></div>
@@ -369,7 +389,7 @@
       <div class="star">⭐</div>
     </div>
     <div class="intro-content">
-      <div class="intro-message">hey, Shreya here something for you are you excited click here</div>
+      <div class="intro-message">hey, Shreya here something for you, my cute princess (Butke), are you excited? click here</div>
       <button class="enter-btn" onclick="enterPage()">Click Here</button>
     </div>
   </div>
