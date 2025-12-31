@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Happy New Year 💖</title>
-  <meta name="description" content="A cheerful Happy New Year card with floating hearts and animated text." />
+  <meta name="description" content="A cheerful Happy New Year card with floating hearts, animated text, and interactive moments." />
   <style>
     :root{
       --bg1: #ffd6e8;
@@ -45,6 +45,7 @@
       backdrop-filter: blur(6px);
       max-width:720px;
       width:calc(100% - 48px);
+      transition: all 0.5s ease;
     }
 
     h1{
@@ -87,6 +88,40 @@
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid var(--accent);
+    }
+
+    .best-moments {
+      display: none;
+      margin-top: 20px;
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--text);
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .best-moments.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .next-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      animation: fadeInUp 1.5s ease-out 2s both;
+    }
+
+    .next-btn:hover {
+      background: var(--accent-2);
     }
 
     /* Animations */
@@ -148,7 +183,7 @@
     /* Respect user's reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       .heart { animation: none; opacity:0.7; transform: translateY(0) rotate(45deg); }
-      h1, h2, p, .name, .moments { animation: none; opacity: 1; }
+      h1, h2, p, .name, .moments, .best-moments, .next-btn { animation: none; opacity: 1; }
     }
 
     /* Responsive padding on small screens */
@@ -173,7 +208,28 @@
     <h2>💖 With Love & Smiles 💖</h2>
     <p>May this New Year bring you joy, happiness,<br>success, and lots of love 💕</p>
     <div class="moments">Cherished moments of 2025 with you: Our laughter-filled adventures, cozy movie nights, surprise celebrations, and the countless ways you brightened my days. Here's to even more magic in 2026! ✨</div>
+    <button class="next-btn" onclick="showBestMoments()">Next: Best Moments of 2025</button>
+    <div class="best-moments" id="bestMoments">
+      <h3>🌟 Best Moments of 2025 🌟</h3>
+      <ul style="text-align: left; display: inline-block;">
+        <li>That unforgettable road trip where we sang our hearts out under the stars.</li>
+        <li>Your birthday surprise party – the look on your face was priceless!</li>
+        <li>Our first hike together, conquering the mountain and celebrating with picnics.</li>
+        <li>Late-night talks that turned into dawn, sharing dreams and secrets.</li>
+        <li>The cozy winter evenings by the fireplace, wrapped in blankets and laughter.</li>
+      </ul>
+      <p>These are just a few highlights – every moment with you was special. Can't wait for more in 2026! 💖</p>
+    </div>
     <div class="name">✨ From SHREYA (Butke) ✨</div>
   </main>
+
+  <script>
+    function showBestMoments() {
+      const moments = document.getElementById('bestMoments');
+      moments.classList.add('show');
+      // Optionally hide the button after click
+      document.querySelector('.next-btn').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
