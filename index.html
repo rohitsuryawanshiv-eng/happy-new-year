@@ -34,6 +34,55 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
+    /* Intro screen */
+    .intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      z-index: 10;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .intro.hidden {
+      opacity: 0;
+      transform: scale(0.9);
+      pointer-events: none;
+    }
+
+    .intro-content {
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .intro-message {
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 700;
+      margin-bottom: 20px;
+      animation: fadeInUp 2s ease-out;
+    }
+
+    .enter-btn {
+      padding: 12px 24px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      animation: fadeInUp 2s ease-out 1s both;
+    }
+
+    .enter-btn:hover {
+      background: var(--accent-2);
+    }
+
     /* Card */
     .card{
       background:var(--card-bg);
@@ -46,6 +95,13 @@
       max-width:720px;
       width:calc(100% - 48px);
       transition: all 0.5s ease;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: scale(1);
     }
 
     h1{
@@ -117,7 +173,7 @@
       font-size: 16px;
       cursor: pointer;
       transition: background 0.3s ease;
-      animation: fadeInUp 1.5s ease-out 2s both;
+      animation: fadeInUp 1.5s ease-out 2.5s both;
     }
 
     .next-btn:hover {
@@ -183,7 +239,7 @@
     /* Respect user's reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       .heart { animation: none; opacity:0.7; transform: translateY(0) rotate(45deg); }
-      h1, h2, p, .name, .moments, .best-moments, .next-btn { animation: none; opacity: 1; }
+      .intro-message, .enter-btn, h1, h2, p, .name, .moments, .best-moments, .next-btn { animation: none; opacity: 1; }
     }
 
     /* Responsive padding on small screens */
@@ -193,6 +249,14 @@
   </style>
 </head>
 <body>
+  <!-- Intro screen -->
+  <div class="intro" id="intro">
+    <div class="intro-content">
+      <div class="intro-message">👸 For My Cute Princess (Butke) 👸 💖✨</div>
+      <button class="enter-btn" onclick="enterPage()">Enter the Celebration</button>
+    </div>
+  </div>
+
   <!-- Decorative hearts: aria-hidden because they are purely visual -->
   <div class="hearts" aria-hidden="true">
     <div class="heart small" style="left:8%; --duration:7s; animation-delay: -1s;"></div>
@@ -203,7 +267,7 @@
     <div class="heart" style="left:86%; --duration:7.6s; animation-delay: -6s;"></div>
   </div>
 
-  <main class="card" role="main" aria-labelledby="title">
+  <main class="card" id="mainCard" role="main" aria-labelledby="title">
     <h1 id="title">🎉 Happy New Year 2026 🎉</h1>
     <h2>💖 With Love & Smiles 💖</h2>
     <p>May this New Year bring you joy, happiness,<br>success, and lots of love 💕</p>
@@ -212,8 +276,8 @@
     <div class="best-moments" id="bestMoments">
       <h3>🌟 Best Moments of 2025 🌟</h3>
       <ul style="text-align: left; display: inline-block;">
-        <li>BUTKE tuza sobat na spend kelala pratek moment aahe bgh to hya year cha sarvat besteststst moments aahet  maze</li>
-        <li></li>
+        <li>That unforgettable road trip where we sang our hearts out under the stars.</li>
+        <li>Your birthday surprise party – the look on your face was priceless!</li>
         <li>Our first hike together, conquering the mountain and celebrating with picnics.</li>
         <li>Late-night talks that turned into dawn, sharing dreams and secrets.</li>
         <li>The cozy winter evenings by the fireplace, wrapped in blankets and laughter.</li>
@@ -224,6 +288,15 @@
   </main>
 
   <script>
+    function enterPage() {
+      const intro = document.getElementById('intro');
+      const card = document.getElementById('mainCard');
+      intro.classList.add('hidden');
+      setTimeout(() => {
+        card.classList.add('show');
+      }, 1000); // Delay to match transition
+    }
+
     function showBestMoments() {
       const moments = document.getElementById('bestMoments');
       moments.classList.add('show');
